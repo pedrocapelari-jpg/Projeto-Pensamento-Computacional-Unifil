@@ -1,0 +1,1084 @@
+/* =========================================================
+   PROJECT PENSAMENTO COMPUTACIONAL
+   RETRO TEXT ADVENTURE / 1980s TERMINAL
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+
+:root {
+
+    --green: #39ff14;
+    --green-dark: #168000;
+    --green-light: #9cff88;
+
+    --black: #020402;
+    --black-soft: #071007;
+
+    --gray: #719271;
+
+    --border: #286d28;
+
+    --max-width: 1100px;
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #071207 0%,
+            #020402 65%
+        );
+
+    color: var(--green);
+
+    font-family: "VT323", monospace;
+
+    font-size: 22px;
+
+    line-height: 1.4;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+}
+
+
+/* =========================================================
+   SCANLINES
+   ========================================================= */
+
+.scanlines {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 999;
+
+    opacity: 0.08;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            #ffffff 3px
+        );
+
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+    background: var(--green);
+    color: var(--black);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.terminal-header {
+
+    border-bottom: 2px solid var(--green);
+
+    padding-bottom: 50px;
+
+}
+
+
+.terminal-top {
+
+    max-width: var(--max-width);
+
+    margin: auto;
+
+    padding: 12px 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 18px;
+
+}
+
+
+.hero {
+
+    max-width: var(--max-width);
+
+    margin: auto;
+
+    padding: 80px 20px 20px;
+
+}
+
+
+.ascii-title {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 35px;
+
+}
+
+
+.ascii-title pre {
+
+    font-family: monospace;
+
+    font-weight: bold;
+
+    font-size: clamp(8px, 1.6vw, 18px);
+
+    line-height: 1;
+
+    text-shadow:
+        0 0 5px var(--green),
+        0 0 15px var(--green);
+
+}
+
+
+.terminal-command {
+
+    font-size: 26px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.typing {
+
+    color: var(--green-light);
+
+}
+
+
+.typing::after {
+
+    content: "█";
+
+    animation: blink 1s infinite;
+
+}
+
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+
+    max-width: var(--max-width);
+
+    margin: auto;
+
+    padding: 50px 20px 100px;
+
+}
+
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.panel {
+
+    border: 1px solid var(--border);
+
+    padding: 30px;
+
+    margin-bottom: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 60, 20, 0.25),
+            rgba(0, 0, 0, 0.4)
+        );
+
+    box-shadow:
+        0 0 15px rgba(57, 255, 20, 0.05);
+
+}
+
+
+.panel-title {
+
+    display: inline-block;
+
+    border: 1px solid var(--green);
+
+    padding: 5px 12px;
+
+    margin-bottom: 25px;
+
+    font-size: 17px;
+
+    background: var(--black);
+
+}
+
+
+h1,
+h2,
+h3 {
+
+    font-family: "Press Start 2P", monospace;
+
+    line-height: 1.6;
+
+}
+
+
+h1 {
+
+    font-size: clamp(18px, 3vw, 30px);
+
+    margin-bottom: 10px;
+
+}
+
+
+h2 {
+
+    font-size: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+
+h3 {
+
+    font-size: 16px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.subtitle {
+
+    color: var(--green-light);
+
+    margin-bottom: 25px;
+
+}
+
+
+strong {
+
+    color: var(--green-light);
+
+}
+
+
+/* =========================================================
+   INFO GRID
+   ========================================================= */
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+}
+
+
+.info-grid div {
+
+    border: 1px solid var(--border);
+
+    padding: 15px;
+
+}
+
+
+.info-grid span {
+
+    display: block;
+
+    color: var(--gray);
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.info-grid strong {
+
+    font-size: 20px;
+
+}
+
+
+/* =========================================================
+   OBJECTIVES
+   ========================================================= */
+
+.objectives {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.objective {
+
+    display: flex;
+
+    gap: 20px;
+
+    border: 1px solid var(--border);
+
+    padding: 20px;
+
+}
+
+
+.number {
+
+    font-family: "Press Start 2P";
+
+    font-size: 14px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =========================================================
+   JOURNEY
+   ========================================================= */
+
+.journey {
+
+    padding: 50px 0;
+
+}
+
+
+.section-heading {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+
+}
+
+
+.section-heading span {
+
+    font-size: 18px;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 15px 0;
+
+}
+
+
+/* =========================================================
+   GAME MAP
+   ========================================================= */
+
+.game-map {
+
+    position: relative;
+
+    max-width: 900px;
+
+    margin: auto;
+
+}
+
+
+.game-map::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    bottom: 70px;
+
+    left: 50%;
+
+    width: 3px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            var(--green),
+            var(--green) 12px,
+            transparent 12px,
+            transparent 25px
+        );
+
+    transform: translateX(-50%);
+
+}
+
+
+/* =========================================================
+   LESSON CARD
+   ========================================================= */
+
+.lesson-card {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 90px 1fr;
+
+    margin-bottom: 70px;
+
+}
+
+
+.node {
+
+    position: relative;
+
+    z-index: 3;
+
+    width: 65px;
+
+    height: 65px;
+
+    border: 2px solid var(--green);
+
+    background: var(--black);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-family: "Press Start 2P";
+
+    font-size: 14px;
+
+    box-shadow:
+        0 0 10px rgba(57, 255, 20, 0.5);
+
+}
+
+
+.lesson-content {
+
+    border: 1px solid var(--border);
+
+    background: rgba(0, 10, 0, 0.85);
+
+    padding: 30px;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+.lesson-content:hover {
+
+    transform: translateX(6px);
+
+    box-shadow:
+        0 0 20px rgba(57, 255, 20, 0.15);
+
+}
+
+
+.lesson-status {
+
+    color: var(--gray);
+
+    font-size: 17px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.lesson-description {
+
+    color: var(--green-light);
+
+    margin-bottom: 20px;
+
+}
+
+
+.lesson-content ul {
+
+    list-style: none;
+
+    margin: 20px 0;
+
+}
+
+
+.lesson-content li {
+
+    margin-bottom: 8px;
+
+}
+
+
+.lesson-content li::before {
+
+    content: "> ";
+
+    color: var(--green);
+
+}
+
+
+.topics {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin: 20px 0;
+
+}
+
+
+.topics span {
+
+    border: 1px solid var(--green-dark);
+
+    padding: 3px 8px;
+
+    font-size: 17px;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.play-button {
+
+    display: inline-block;
+
+    padding: 12px 18px;
+
+    border: 1px solid var(--green);
+
+    color: var(--green);
+
+    background: transparent;
+
+    text-decoration: none;
+
+    font-family: "VT323", monospace;
+
+    font-size: 22px;
+
+    margin-top: 10px;
+
+    cursor: pointer;
+
+}
+
+
+.play-button:hover {
+
+    background: var(--green);
+
+    color: var(--black);
+
+    box-shadow:
+        0 0 15px var(--green);
+
+}
+
+
+.lesson-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+}
+
+
+/* =========================================================
+   SPECIAL LEVELS
+   ========================================================= */
+
+.boss-level .lesson-content {
+
+    border-color: #7aff5c;
+
+    box-shadow:
+        inset 0 0 25px rgba(57, 255, 20, 0.03);
+
+}
+
+
+.final-level .lesson-content {
+
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 25px rgba(57, 255, 20, 0.15);
+
+}
+
+
+/* =========================================================
+   FINISH
+   ========================================================= */
+
+.finish-line {
+
+    position: relative;
+
+    z-index: 4;
+
+    background: var(--black);
+
+    border: 1px solid var(--green);
+
+    padding: 25px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    text-shadow:
+        0 0 8px var(--green);
+
+}
+
+
+/* =========================================================
+   METHODS
+   ========================================================= */
+
+.method-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.method-grid > div {
+
+    border: 1px solid var(--border);
+
+    padding: 20px;
+
+}
+
+
+.method-grid strong {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* =========================================================
+   EVALUATION
+   ========================================================= */
+
+.evaluation-list {
+
+    list-style: none;
+
+}
+
+
+.evaluation-list li {
+
+    border-bottom: 1px dashed var(--border);
+
+    padding: 12px 0;
+
+}
+
+
+.evaluation-list li::before {
+
+    content: "[✓] ";
+
+}
+
+
+/* =========================================================
+   REFERENCES
+   ========================================================= */
+
+.references {
+
+    padding-left: 25px;
+
+}
+
+
+.references li {
+
+    padding: 8px 0;
+
+}
+
+
+/* =========================================================
+   FEEDBACK
+   ========================================================= */
+
+.feedback {
+
+    margin-top: 80px;
+
+}
+
+
+.feedback-terminal {
+
+    border: 2px solid var(--green);
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 30px rgba(57, 255, 20, 0.15);
+
+}
+
+
+.feedback-terminal p {
+
+    margin-bottom: 12px;
+
+}
+
+
+.feedback-terminal h2 {
+
+    margin: 30px 0;
+
+}
+
+
+.forms-button {
+
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 18px 25px;
+
+    border: 2px solid var(--green);
+
+    color: var(--black);
+
+    background: var(--green);
+
+    text-decoration: none;
+
+    font-family: "Press Start 2P";
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    transition: all 0.2s;
+
+}
+
+
+.forms-button:hover {
+
+    background: var(--black);
+
+    color: var(--green);
+
+    box-shadow:
+        0 0 25px var(--green);
+
+}
+
+
+.forms-note {
+
+    margin-top: 15px;
+
+    color: var(--gray);
+
+    font-size: 17px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    border-top: 1px solid var(--green);
+
+    padding: 25px 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    max-width: var(--max-width);
+
+    margin: auto;
+
+    color: var(--gray);
+
+    font-size: 17px;
+
+}
+
+
+footer strong {
+
+    color: var(--green);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .terminal-top {
+
+        flex-direction: column;
+
+        gap: 5px;
+
+    }
+
+
+    .info-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .objectives {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .method-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .game-map::before {
+
+        left: 25px;
+
+    }
+
+
+    .lesson-card {
+
+        grid-template-columns: 55px 1fr;
+
+    }
+
+
+    .node {
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 11px;
+
+    }
+
+
+    .lesson-content {
+
+        padding: 20px;
+
+    }
+
+
+    footer {
+
+        flex-direction: column;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    body {
+
+        font-size: 19px;
+
+    }
+
+
+    main {
+
+        padding-left: 12px;
+
+        padding-right: 12px;
+
+    }
+
+
+    .panel {
+
+        padding: 20px;
+
+    }
+
+
+    .hero {
+
+        padding-top: 50px;
+
+    }
+
+
+    .info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .ascii-title pre {
+
+        font-size: 7px;
+
+    }
+
+
+    h3 {
+
+        font-size: 12px;
+
+    }
+
+
+    .play-button {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+
+    .lesson-actions {
+
+        flex-direction: column;
+
+    }
+
+}
