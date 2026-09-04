@@ -12,20 +12,7 @@ document.getElementById("year").textContent =
     new Date().getFullYear();
 
 
-/* =========================================================
-   CONFIGURAÇÃO DO GOOGLE FORMS
-   =========================================================
-
-   Basta substituir o endereço abaixo pelo seu formulário.
-
-   Exemplo:
-
-   const FORMS_URL =
-       "https://docs.google.com/forms/d/e/SEU_ID/viewform";
-
-*/
-
-const FORMS_URL = "";
+const FORMS_URL ="https://forms.gle/kUkXXYXxYkJzvifU6";
 
 
 /* =========================================================

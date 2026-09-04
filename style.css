@@ -1082,3 +1082,224 @@ footer strong {
     }
 
 }
+
+/* =========================================================
+   OFFICIAL PROJECT RESOURCES
+   ========================================================= */
+
+.official-resources {
+
+    margin: 35px 0 60px;
+
+    padding: 30px;
+
+    border: 2px solid var(--green);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 80, 20, 0.25),
+            rgba(0, 0, 0, 0.8)
+        );
+
+    box-shadow:
+        0 0 20px rgba(57, 255, 20, 0.12);
+
+}
+
+
+.resource-title {
+
+    display: inline-block;
+
+    border: 1px solid var(--green);
+
+    padding: 6px 12px;
+
+    margin-bottom: 20px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 12px;
+
+    background: var(--black);
+
+}
+
+
+.resource-intro {
+
+    margin-bottom: 25px;
+
+    color: var(--green-light);
+
+}
+
+
+.resource-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.resource-card {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 55px 1fr 35px;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-height: 115px;
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+
+    color: var(--green);
+
+    text-decoration: none;
+
+    background: var(--black);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.resource-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 20px rgba(57, 255, 20, 0.25);
+
+}
+
+
+.resource-card.github {
+
+    border-left: 5px solid var(--green);
+
+}
+
+
+.resource-card.youtube {
+
+    border-left: 5px solid var(--green-dark);
+
+}
+
+
+.resource-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid var(--green);
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 12px;
+
+}
+
+
+.resource-card strong {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 12px;
+
+}
+
+
+.resource-card small {
+
+    display: block;
+
+    color: var(--gray);
+
+    font-size: 18px;
+
+    line-height: 1.2;
+
+}
+
+
+.resource-arrow {
+
+    font-size: 24px;
+
+    transition: transform 0.2s ease;
+
+}
+
+
+.resource-card:hover .resource-arrow {
+
+    transform: translateX(5px);
+
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+
+    .resource-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .official-resources {
+
+        padding: 20px;
+
+    }
+
+    .resource-card {
+
+        grid-template-columns: 45px 1fr;
+
+    }
+
+    .resource-arrow {
+
+        display: none;
+
+    }
+
+}
